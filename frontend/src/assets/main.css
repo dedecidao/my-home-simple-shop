@@ -3,8 +3,12 @@
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.5rem;
   font-weight: normal;
+  border: 1px solid rgba(0, 0, 0, 0.08); /* Borda bem clarinha */
+  border-radius: 20px;
+
+  overflow: hidden;
 }
 
 a,
@@ -21,15 +25,55 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.app-wrapper {
+  /* Variáveis Padrão (Dark) */
+  --bg: #171320;
+  --text: #f9f5ff;
+  --card-bg: #241729;
+  --card-border: rgba(244, 114, 182, 0.15);
+  --primary: #f97316;
+  --primary-hover: #ea580c;
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.3s, color 0.3s;
+  padding-bottom: 80px; /* Espaço para a barra fixa não cobrir conteúdo */
 }
+
+.app-wrapper.light {
+  /* Variáveis Light */
+  --bg: #fff7f4;
+  --text: #402b3f;
+  --card-bg: #ffffff;
+  --card-border: rgba(236, 72, 153, 0.2);
+  --primary: #ec4899;
+  --primary-hover: #db2777;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+
+/* --- BOTÕES --- */
+.btn-action {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.btn-action:hover { background: var(--primary-hover); }
+
+
+
+
+
+
