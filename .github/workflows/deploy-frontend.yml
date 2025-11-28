@@ -1,0 +1,67 @@
+name: Deploy Frontend Vue
+
+on:
+  # Dispara quando você der push na branch main
+  push:
+    branches: ["main"]
+  # Permite disparar manualmente se precisar (botão no GitHub)
+  workflow_dispatch:
+
+# Dá permissão para o robô do GitHub ler seu código e publicar no Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Garante que não tenha dois deploys rodando ao mesmo tempo
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # TAREFA 1: Construir o site (Build)
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar seu código
+        uses: actions/checkout@v4
+
+      - name: Instalar o PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Configurar o Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+          # Avisa onde está o arquivo de trava para o cache funcionar
+          cache-dependency-path: frontend/pnpm-lock.yaml
+
+      - name: Instalar dependências do Frontend
+        # O comando entra na pasta 'frontend' antes de rodar
+        working-directory: ./frontend
+        run: pnpm install
+
+      - name: Criar o site estático (Build)
+        working-directory: ./frontend
+        run: pnpm run build
+
+      - name: Preparar arquivos para envio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # O build do Vue/Vite gera a pasta 'dist' dentro de 'frontend'
+          path: ./frontend/dist
+
+  # TAREFA 2: Publicar (Deploy)
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
