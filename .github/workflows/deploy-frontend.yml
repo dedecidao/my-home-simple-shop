@@ -48,18 +48,23 @@ jobs:
         working-directory: ./frontend
         run: pnpm run build
 
-      # --- NOVOS PASSOS INSERIDOS AQUI ---
+      # --- DIAGNÓSTICO E CORREÇÃO ---
 
-      # 1. Debug: Lista o que foi criado para a gente ver no log se a pasta existe
-      - name: Debug - Listar arquivos gerados
-        run: ls -R frontend/dist
-        continue-on-error: true
+      - name: Verificar se index.html foi criado
+        run: |
+          if [ ! -f frontend/dist/index.html ]; then
+            echo "❌ ERRO CRÍTICO: O build terminou, mas o arquivo index.html NÃO ESTÁ na pasta frontend/dist."
+            echo "📂 Listando arquivos encontrados para debug:"
+            ls -R frontend
+            exit 1
+          else
+            echo "✅ SUCESSO: index.html encontrado e pronto para envio!"
+          fi
 
-      # 2. Correção: Cria arquivo .nojekyll para o GitHub não ignorar arquivos com "_"
       - name: Criar arquivo .nojekyll
         run: touch frontend/dist/.nojekyll
 
-      # --- FIM DOS NOVOS PASSOS ---
+      # --- FIM DO DIAGNÓSTICO ---
 
       - name: Preparar arquivos para envio
         uses: actions/upload-pages-artifact@v3
