@@ -34,7 +34,7 @@ jobs:
       - name: Configurar o Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: 'pnpm'
           # Avisa onde está o arquivo de trava para o cache funcionar
           cache-dependency-path: frontend/pnpm-lock.yaml
