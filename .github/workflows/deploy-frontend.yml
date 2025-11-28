@@ -48,6 +48,19 @@ jobs:
         working-directory: ./frontend
         run: pnpm run build
 
+      # --- NOVOS PASSOS INSERIDOS AQUI ---
+
+      # 1. Debug: Lista o que foi criado para a gente ver no log se a pasta existe
+      - name: Debug - Listar arquivos gerados
+        run: ls -R frontend/dist
+        continue-on-error: true
+
+      # 2. Correção: Cria arquivo .nojekyll para o GitHub não ignorar arquivos com "_"
+      - name: Criar arquivo .nojekyll
+        run: touch frontend/dist/.nojekyll
+
+      # --- FIM DOS NOVOS PASSOS ---
+
       - name: Preparar arquivos para envio
         uses: actions/upload-pages-artifact@v3
         with:
