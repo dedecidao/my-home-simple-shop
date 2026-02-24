@@ -30,6 +30,38 @@ const isLoading = ref(false)
 // --- 4. AÇÕES ---
 const voltar = () => router.push('/')
 
+const testarConexao = async () => {
+  const urlApi = "https://script.google.com/macros/s/AKfycbwkFHlfY9LVfX17897oyaluhbFJHtGIzpnFwrMKDZxOgxb3F6tzmbgPpsByojjOEka9vA/exec" 
+
+  console.log("🚀 Iniciando teste de conexão...")
+  isLoading.value = true
+
+  const dadosDeTeste = {
+    teste: "Oi Google!",
+    origem: "Botão de Teste Vue",
+    produto: product.value?.name,
+    total: product.value?.price
+  }
+
+  try {
+    const response = await fetch(urlApi, {
+      method: "POST",
+      redirect: "follow", // OBRIGATÓRIO para Google Scripts
+      body: JSON.stringify(dadosDeTeste)
+    })
+
+    const result = await response.json()
+    console.log("✅ Resposta do Google:", result)
+    alert(`Conexão OK!\nO Google respondeu: ${result.status}`)
+    
+  } catch (error) {
+    console.error("❌ Erro no teste:", error)
+    alert("Erro ao conectar. Verifique a URL e se fez o Deploy corretamente.")
+  } finally {
+    isLoading.value = false
+  }
+}
+
 const finalizarCompra = async () => {
   // Validação simples
   if (!form.value.name || !form.value.cardNumber) {
@@ -114,6 +146,15 @@ const finalizarCompra = async () => {
                 {{ isLoading ? 'Processando...' : 'Confirmar Pagamento' }}
               </button>
 
+              <button 
+                type="button" 
+                @click="testarConexao" 
+                class="btn-test" 
+                :disabled="isLoading"
+              >
+                {{ isLoading ? 'Aguarde...' : '🧪 Testar API Google' }}
+              </button>
+
               <p class="secure-note">🔒 Ambiente Seguro</p>
             </form>
           </div>
@@ -131,6 +172,29 @@ const finalizarCompra = async () => {
 </template>
 
 <style scoped>
+
+  .btn-test {
+  background: transparent;
+  color: var(--primary);
+  border: 1px dashed var(--primary);
+  padding: 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.btn-test:hover {
+  background: rgba(249, 115, 22, 0.1); /* Um leve brilho da cor primária */
+}
+
+.btn-test:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 /* --- CONFIGURAÇÕES DO TEMA (Copiado da Home para consistência) --- */
 .app-wrapper {
   /* Dark Mode Default */
