@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { products } from '@/data/products.js'
 
@@ -26,20 +26,39 @@ const isLoading = ref(false)
 const errorMessage = ref('')
 
 // --- 5. AÇÕES ---
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
+
 const voltar = () => router.push('/')
 
 const finalizarCompra = async () => {
   errorMessage.value = '';
 
-  if (!form.value.name || !form.value.email || !form.value.presenca) {
+  const nomeFormatado = form.value.name.trim();
+  const emailFormatado = form.value.email.trim();
+  const presencaSelecionada = form.value.presenca;
+
+  if (!nomeFormatado || !emailFormatado || !presencaSelecionada) {
     errorMessage.value = "Por favor, preencha todos os campos obrigatórios (*).";
+    return;
+  }
+
+  if (nomeFormatado.length < 3 || nomeFormatado.length > 100) {
+    errorMessage.value = "O nome deve ter entre 3 e 100 caracteres.";
+    return;
+  }
+
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!regexEmail.test(emailFormatado) || emailFormatado.length > 150) {
+    errorMessage.value = "Por favor, insira um endereço de e-mail válido.";
     return;
   }
 
   isLoading.value = true;
 
   const dadosPedido = {
-    cliente: { nome: form.value.name, email: form.value.email, presenca: form.value.presenca },
+    cliente: { nome: nomeFormatado, email: emailFormatado, presenca: presencaSelecionada },
     metodo: "Mercado Pago",
     total: product.value.price,
     itens: [{ nome: product.value.name, preco: product.value.price }]
@@ -102,18 +121,33 @@ const finalizarCompra = async () => {
 
         <section class="card payment-card">
           <div class="card-content">
-            <h2>Dados (Precisamos saber quem é) </h2>
+            <h2>Dados (Precisamos saber quem você é) </h2>
             <p class="info-text">Você será redirecionado para o Mercado Pago para escolher Pix ou Cartão com segurança.</p>
 
             <form @submit.prevent="finalizarCompra" class="payment-form">
               <div class="form-group">
-                <label>Seu nome completo</label>
-                <input type="text" v-model="form.name" placeholder="Como na identidade" required />
+                <label>Seu nome completo *</label>
+                <input 
+                  type="text" 
+                  v-model="form.name" 
+                  placeholder="Como na identidade" 
+                  required 
+                  minlength="3" 
+                  maxlength="100" 
+                  autocomplete="name" 
+                />
               </div>
 
               <div class="form-group">
-                <label>E-mail</label>
-                <input type="email" v-model="form.email" placeholder="onde receberá o comprovante" required />
+                <label>E-mail *</label>
+                <input 
+                  type="email" 
+                  v-model="form.email" 
+                  placeholder="onde receberá o comprovante" 
+                  required 
+                  maxlength="150" 
+                  autocomplete="email" 
+                />
               </div>
 
               <div class="form-group options-group">
@@ -134,12 +168,14 @@ const finalizarCompra = async () => {
                 </div>
               </transition>
 
-              <button type="submit" class="btn-action full-width" :disabled="isLoading">
-                {{ isLoading ? 'Preparando Pagamento...' : 'Ir para Pagamento 🚀' }}
+              <button type="submit" class="btn-action full-width btn-checkout" :disabled="isLoading">
+                <span v-if="isLoading" class="spinner"></span>
+                <span>{{ isLoading ? 'Preparando Pagamento...' : 'Ir para Pagamento 🚀' }}</span>
               </button>
 
               <div class="security-badges">
-                <span>🔒 Pagamento Processado pelo Mercado Pago</span>
+                <span class="badge-icon">🔒</span>
+                <span>Pagamento Processado com Segurança pelo Mercado Pago</span>
               </div>
             </form>
           </div>
@@ -170,47 +206,159 @@ const finalizarCompra = async () => {
 
 .container { width: 90%; max-width: 1100px; margin: 0 auto; padding-top: 2rem; }
 .checkout-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; }
-.card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; }
-.card-image-wrapper img { width: 100%; height: 200px; object-fit: cover; }
-.card-content { padding: 1.5rem; }
-.price-row { display: flex; justify-content: space-between; margin-top: 1rem; font-weight: bold; font-size: 1.2rem; color: var(--primary); }
-.form-group { margin-bottom: 1rem; }
-input[type="text"], input[type="email"] { width: 100%; background: rgba(0,0,0,0.05); border: 1px solid var(--card-border); color: var(--text); padding: 12px; border-radius: 8px; }
+.card { 
+  background: var(--card-bg); 
+  border: 1px solid rgba(236, 72, 153, 0.1); 
+  border-radius: 24px; 
+  overflow: hidden; 
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.05);
+}
+.card-image-wrapper img { width: 100%; height: 250px; object-fit: cover; }
+.card-content { padding: 1.8rem; }
+.price-row { display: flex; justify-content: space-between; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px dashed rgba(236, 72, 153, 0.2); font-weight: bold; font-size: 1.2rem; color: var(--text); }
+.price-row .price { color: var(--primary); background: rgba(236, 72, 153, 0.1); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 1.3rem; }
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { font-weight: 500; font-size: 0.95rem; display: block; margin-bottom: 0.4rem; color: var(--text); }
+input[type="text"], input[type="email"] { 
+  width: 100%; 
+  background: var(--card-bg); 
+  border: 1px solid var(--card-border); 
+  color: var(--text); 
+  padding: 14px; 
+  border-radius: 12px; 
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+input[type="text"]:focus, input[type="email"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+}
+input::placeholder { opacity: 0.5; }
 
 .options-group label { display: block; margin-bottom: 0.5rem; }
 .radio-label {
   display: flex !important;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
   font-size: 0.95rem;
-  background: rgba(0,0,0,0.05);
-  padding: 12px;
-  border-radius: 8px;
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: 12px;
   border: 1px solid var(--card-border);
   margin-top: 0.5rem;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
-.radio-label:hover { background: rgba(0,0,0,0.1); }
+.radio-label:hover { border-color: var(--primary); background: rgba(236, 72, 153, 0.02); }
 .radio-label input[type="radio"] {
   width: auto;
   margin: 0;
   cursor: pointer;
   accent-color: var(--primary);
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
-.btn-action { background: var(--primary); color: white; border: none; padding: 1rem; border-radius: 20px; font-weight: 600; cursor: pointer; width: 100%; }
-.btn-back { background: none; border: none; color: var(--primary); cursor: pointer; margin-bottom: 1rem; }
+
+.btn-checkout { 
+  background: var(--primary); 
+  color: white; 
+  border: none; 
+  padding: 1.2rem; 
+  border-radius: 20px; 
+  font-weight: 600; 
+  font-size: 1.1rem;
+  cursor: pointer; 
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+  margin-top: 1rem;
+}
+.btn-checkout:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+  background: var(--primary-hover);
+}
+.btn-checkout:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.btn-back { 
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--card-bg); 
+  border: 1px solid var(--card-border); 
+  color: var(--text); 
+  cursor: pointer; 
+  margin-bottom: 2rem; 
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.btn-back:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
 
 .error-message {
   color: #ef4444;
   background: rgba(239, 68, 68, 0.1);
-  padding: 0.8rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
   text-align: center;
   border: 1px solid rgba(239, 68, 68, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.security-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.7;
+  border-top: 1px solid var(--card-border);
+  padding-top: 1.5rem;
+}
+.badge-icon {
+  font-size: 1.2rem;
 }
 
 .fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }

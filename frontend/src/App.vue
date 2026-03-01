@@ -2,17 +2,17 @@
 import { RouterView } from 'vue-router'
 import { ref, onMounted, watch } from 'vue'
 
-const isLightTheme = ref(false)
+const isLightTheme = ref(true)
 
 const updateBodyBackground = () => {
-  document.body.style.backgroundColor = isLightTheme.value ? '#fff7f4' : '#171320'
-  document.body.style.color = isLightTheme.value ? '#402b3f' : '#f9f5ff'
+  document.body.style.backgroundColor = isLightTheme.value ? '#fff0f5' : '#171320'
+  document.body.style.color = isLightTheme.value ? '#4a3641' : '#f9f5ff'
 }
 
 onMounted(() => {
   const savedTheme = localStorage.getItem('theme')
-  if (savedTheme === 'light') {
-    isLightTheme.value = true
+  if (savedTheme === 'dark') {
+    isLightTheme.value = false
   }
   updateBodyBackground()
 })
@@ -29,6 +29,7 @@ const toggleTheme = () => {
 
 <template>
   <div :class="['app-wrapper', isLightTheme ? 'light' : 'dark']">
+    <!-- Botão de Tema no Canto Superior Direito -->
     <button class="global-theme-btn" @click="toggleTheme" :title="isLightTheme ? 'Ir para modo escuro' : 'Ir para modo claro'">
        {{ isLightTheme ? '🌙' : '☀️' }}
     </button>

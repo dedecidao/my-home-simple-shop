@@ -61,14 +61,22 @@ const closeWelcomeModal = () => {
         <div class="modal-content">
           <h2>{{ greeting }}!</h2>
           <p>
-            Ficamos muito felizes em ter você aqui! estamos preparando cada detalhe do nosso <b>novo lar</b> com muito carinho.
+            Estamos muito felizes em ter você aqui! 
           </p>
           <p>
-            Gostaríamos de informar que todos os presentes listados neste site são <b>fictícios</b>. Decidimos por este modelo para que o valor arrecadado seja <b>destinado à compra do nosso enxoval físico</b>, garantindo que tudo combine com as <b>cores e o estilo</b> que planejamos para a nossa casa.
+            Cada detalhe do nosso novo lar está sendo preparado com muito carinho!! 
           </p>
           <p>
-            Esperamos que entendam e, desde já, <b>agradecemos imenso pelo apoio</b> e por fazerem parte da nossa história!
+            Gostaríamos de informar que todos os presentes listados neste site são fictícios. Decidimos por este modelo para que o valor arrecadado seja destinado à compra do nosso enxoval físico, garantindo que tudo combine com as cores e o estilo que planejamos para a nossa casa.
           </p>
+          <p>
+            Esperamos que entendam e, desde já, agradecemos imensamente pelo apoio e por fazerem parte da nossa história!
+          </p>
+          
+          <div class="modal-image-wrapper">
+            <img src="/imagem.jpg" alt="Foto do Casal" class="modal-image" />
+          </div>
+
           <button class="btn-action btn-ok" @click="closeWelcomeModal">OK</button>
         </div>
       </div>
@@ -77,9 +85,13 @@ const closeWelcomeModal = () => {
     <div class="container">
       <header class="hero">
         <h1>Chá 🏠 </h1>
-        <p>Presentes para novos começos e momentos especiais.
-          Com carinho Camilly e André.
+        <p class="hero-subtitle">
+          Presentes para novos começos e momentos especiais.
         </p>
+        <div class="hero-signature">
+          Com carinho, <br />
+          <strong>Camilly e André</strong>
+        </div>
       </header>
 
       <!-- Grid Responsivo -->
@@ -103,8 +115,10 @@ const closeWelcomeModal = () => {
     <!-- Barra de Seleção Fixa (Mobile Friendly) -->
     <transition name="slide-up">
       <div v-if="selectedProduct" class="selection-bar">
+
         <div class="selection-content">
-          <span>Selecionado: <strong>{{ selectedProduct.name }}</strong></span>
+          <strong>{{ selectedProduct.name }}</strong>
+
           <small>Para presentear este item clique em confirmar.</small>
         </div>
         <button class="btn-action btn-confirm" @click="confirmarPresente" >Confirmar</button>
@@ -119,33 +133,70 @@ const closeWelcomeModal = () => {
 
 .hero {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  padding: 3rem 1rem;
+  background: var(--hero-bg);
+  border-radius: 30px;
+  box-shadow: var(--hero-shadow);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--hero-border);
 }
-.hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-.hero p { opacity: 0.8; }
+.hero h1 { 
+  font-size: 3rem; 
+  margin-bottom: 1rem; 
+  background: linear-gradient(to right, var(--primary), #fb7185);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+.hero-subtitle { 
+  opacity: 0.85; 
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-/* Grid Mágica: Adapta de Celular até TV */
+.hero-signature {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  opacity: 0.9;
+  color: var(--text);
+}
+
+.hero-signature strong {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: 'Outfit', sans-serif;
+}
+
+
+/* Grid Mágica */
 .products-grid {
   display: grid;
-  /* Cria colunas de no MÍNIMO 260px. Se sobrar espaço, cria mais colunas. */
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 /* --- CARDS --- */
 .card {
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
+  border: 1px solid rgba(236, 72, 153, 0.1);
+  border-radius: 24px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.05);
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(236, 72, 153, 0.15);
 }
 
 .card:focus-within {
@@ -154,8 +205,15 @@ const closeWelcomeModal = () => {
 }
 
 .card-image-wrapper {
-  height: 200px;
+  height: 220px;
   overflow: hidden;
+  position: relative;
+}
+.card-image-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 30px;
+  background: linear-gradient(to top, var(--card-bg) 0%, transparent 100%);
 }
 
 .card img {
@@ -168,35 +226,37 @@ const closeWelcomeModal = () => {
 .card:hover img { transform: scale(1.05); }
 
 .card-content {
-  padding: 1.2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  flex: 1; /* Ocupa altura restante para alinhar botões */
+  flex: 1; 
   gap: 0.5rem;
 }
 
 .card-content h2 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--text);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
 }
 
 .card-footer {
-  margin-top: auto; /* Empurra o footer para baixo */
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1rem;
+  padding-top: 1.2rem;
+  border-top: 1px dashed rgba(236, 72, 153, 0.2);
 }
 
 .price {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--primary);
+  background: rgba(236, 72, 153, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
 }
-
-
-
 
 /* --- BARRA DE SELEÇÃO FIXA --- */
 .selection-bar {
@@ -248,8 +308,21 @@ const closeWelcomeModal = () => {
   padding: 2.5rem 2rem;
   max-width: 550px;
   width: 100%;
+  max-height: 85vh; /* Ocupa no máximo 85% da tela pra não encher a tela toda */
+  overflow-y: auto; /* Permite rolar se o celular for pequeno */
   text-align: center;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  /* Estilos bonitos pra barra de rolagem */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 6px;
 }
 
 .modal-content h2 {
@@ -264,6 +337,32 @@ const closeWelcomeModal = () => {
   font-size: 1.05rem;
   color: var(--text);
   opacity: 0.9;
+}
+
+.modal-image-wrapper {
+  margin: 1.5rem auto;
+  padding: 8px;
+  background: var(--card-bg);
+  border: 3px dashed var(--primary);
+  border-radius: 20px;
+  max-width: 90%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.modal-image-wrapper:hover {
+  transform: scale(1.03);
+}
+
+.modal-image {
+  width: 100%;
+  max-height: 35vh; /* Evita que a imagem ocupe a tela toda no mobile caso seja muito vertical */
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
 }
 
 .btn-ok {

@@ -34,23 +34,33 @@ a,
   --primary: #f97316;
   --primary-hover: #ea580c;
 
+  /* Hero Box Dark Mode */
+  --hero-bg: linear-gradient(135deg, rgba(36, 23, 41, 0.6) 0%, rgba(36, 23, 41, 0.2) 100%);
+  --hero-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --hero-border: rgba(255, 255, 255, 0.05);
+
   min-height: 100vh;
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   transition: background 0.3s, color 0.3s;
   padding-bottom: 80px;
   /* Espaço para a barra fixa não cobrir conteúdo */
 }
 
 .app-wrapper.light {
-  /* Variáveis Light */
-  --bg: #fff7f4;
-  --text: #402b3f;
+  /* Variáveis Light - Decorado com Rosa/Nude */
+  --bg: #fff0f5;
+  /* LavenderBlush / Rosa bem suave */
+  --text: #4a3641;
   --card-bg: #ffffff;
-  --card-border: rgba(236, 72, 153, 0.2);
+  --card-border: rgba(236, 72, 153, 0.15);
   --primary: #ec4899;
   --primary-hover: #db2777;
+
+  /* Hero Box Light Mode */
+  --hero-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%);
+  --hero-shadow: 0 8px 32px rgba(236, 72, 153, 0.05);
+  --hero-border: rgba(255, 255, 255, 0.5);
 }
 
 .container {
