@@ -3,7 +3,7 @@ export const products = [
     id: 1,
     name: 'Cesta Chá de Panela',
     description: 'Itens básicos de cozinha com um toque carinhoso.',
-    price: 129.9,
+    price: 0.10,
     image: 'https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?auto=format&w=600&q=80'
   },
   {
