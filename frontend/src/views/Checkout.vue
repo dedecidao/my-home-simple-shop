@@ -42,12 +42,28 @@ const finalizarCompra = async () => {
   // >>> AQUI ENTRA A INTEGRAÇÃO COM API DE PAGAMENTO (Stripe, Pagar.me, etc) <<<
   // Exemplo: await api.post('/checkout', { ...form.value, amount: product.value.price })
 
-  setTimeout(() => {
-    isLoading.value = false
-    alert(`Sucesso! Pagamento de R$ ${product.value.price} confirmado.`)
-    router.push('/')
-  }, 1500)
-}
+
+  try {
+    const response = await fetch(URL_API_GOOGLE, {
+      method: "POST",
+      redirect: "follow",
+      body: JSON.stringify(dadosPedido)
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success" && result.linkPagamento) {
+      // Redireciona na mesma aba para evitar bloqueador de pop-ups
+      window.location.href = result.linkPagamento;
+    }
+  } catch (error) {
+    console.error("Erro:", error);
+    alert("Erro ao abrir pagamento.");
+  } finally {
+    isLoading.value = false;
+  }
+};
+
 </script>
 
 <template>
