@@ -1,8 +1,7 @@
-import { createRouter, createWebHashHistory } from 'vue-router' // Mudança aqui!
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
-  // Usar Hash History é essencial para GitHub Pages
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
@@ -21,12 +20,29 @@ const router = createRouter({
       props: true,
       component: () => import('../views/Checkout.vue')
     },
-    // --- NOVA ROTA DE SUCESSO ---
+    // --- ROTA DE SUCESSO ---
     {
       path: '/sucesso',
       name: 'sucesso',
       component: () => import('../views/SuccessView.vue')
     },
+    // --- ADICIONE ESTA ROTA PARA O PIX PENDENTE ---
+    {
+      path: '/pendente',
+      name: 'pendente',
+      component: () => import('../views/PendingView.vue')
+    },
+    // --- ADICIONE ESTA ROTA PARA CASO DE ERRO ---
+    {
+      path: '/erro',
+      name: 'erro',
+      component: () => import('../views/ErrorView.vue')
+    },
+    // Rota curinga (opcional): redireciona para home se a rota não existir
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
+    }
   ],
 })
 
