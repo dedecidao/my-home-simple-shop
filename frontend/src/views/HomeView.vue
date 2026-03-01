@@ -61,7 +61,7 @@ const closeWelcomeModal = () => {
         <div class="modal-content">
           <h2>{{ greeting }}!</h2>
           <p>
-            Ficamos muito felizes em ter você aqui! Eu e a Camilly estamos preparando cada detalhe do nosso <b>novo lar</b> com muito carinho.
+            Ficamos muito felizes em ter você aqui! estamos preparando cada detalhe do nosso <b>novo lar</b> com muito carinho.
           </p>
           <p>
             Gostaríamos de informar que todos os presentes listados neste site são <b>fictícios</b>. Decidimos por este modelo para que o valor arrecadado seja <b>destinado à compra do nosso enxoval físico</b>, garantindo que tudo combine com as <b>cores e o estilo</b> que planejamos para a nossa casa.
@@ -76,9 +76,9 @@ const closeWelcomeModal = () => {
 
     <div class="container">
       <header class="hero">
-        <h1>Chá </h1>
+        <h1>Chá 🏠 </h1>
         <p>Presentes para novos começos e momentos especiais.
-          Com carinho André e Camilly.
+          Com carinho Camilly e André.
         </p>
       </header>
 

@@ -102,12 +102,12 @@ const finalizarCompra = async () => {
 
         <section class="card payment-card">
           <div class="card-content">
-            <h2>Dados </h2>
+            <h2>Dados (Precisamos saber quem é) </h2>
             <p class="info-text">Você será redirecionado para o Mercado Pago para escolher Pix ou Cartão com segurança.</p>
 
             <form @submit.prevent="finalizarCompra" class="payment-form">
               <div class="form-group">
-                <label>Seu Nome Completo</label>
+                <label>Seu nome completo</label>
                 <input type="text" v-model="form.name" placeholder="Como na identidade" required />
               </div>
 
@@ -117,7 +117,7 @@ const finalizarCompra = async () => {
               </div>
 
               <div class="form-group options-group">
-                <label>Confirmação de Presença *</label>
+                <label>Confirmação de presença *</label>
                 <label class="radio-label">
                   <input type="radio" name="presenca" value="Comparecerei presencialmente ao chá, na data 12 de abril de 2026 as 11:30" v-model="form.presenca" required />
                   <span>Comparecerei presencialmente ao chá, na data 12 de abril de 2026 às 11:30</span>
