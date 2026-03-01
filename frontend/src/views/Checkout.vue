@@ -10,7 +10,7 @@ const props = defineProps({
 const router = useRouter()
 
 // --- 1. CONFIGURAÇÃO DA API (SUA URL NOVA) ---
-const URL_API_GOOGLE = "https://script.google.com/macros/s/AKfycbziWTkZOKhPz8u7nO4OsVieNp_sbdBm__72giZVyMMY32WcMz0DbnJhVOps85oWaJBfDQ/exec"
+const URL_API_GOOGLE = "https://script.google.com/macros/s/AKfycbyoWvfDYc3tMl2MSzySAealR7v4eV9GZhWfncIr47xqlbfJsieVlyCMVO2NIAXFvQpOmg/exec"
 
 // --- 2. LÓGICA DO TEMA ---
 const isLightTheme = ref(false)
