@@ -10,7 +10,7 @@ const props = defineProps({
 const router = useRouter()
 
 // --- 1. CONFIGURAÇÃO DA API (SUA URL NOVA) ---
-const URL_API_GOOGLE = "https://script.google.com/macros/s/AKfycbwBgJWyHGBHlBiQRWnOq-q0qZe7Pd37wgOJTizp_I0ybmtyy_-wSZct1bOAcXFC1StyCQ/exec"
+const URL_API_GOOGLE = "https://script.google.com/macros/s/AKfycbzZriAWjrWt455NJ4LakLqH03fRLxBJgKPfh_EaMOUgtSuLjpa-c-I5PDlLMcDBv1qVeg/exec"
 
 
 // --- 3. DADOS DO PRODUTO ---
@@ -99,7 +99,7 @@ const finalizarCompra = async () => {
 
         <section class="card payment-card">
           <div class="card-content">
-            <h2>Dado </h2>
+            <h2>Dados </h2>
             <p class="info-text">Você será redirecionado para o Mercado Pago para escolher Pix ou Cartão com segurança.</p>
 
             <form @submit.prevent="finalizarCompra" class="payment-form">
