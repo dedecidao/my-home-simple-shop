@@ -1,85 +1,41 @@
-name: Deploy Frontend Vue
+name: Deploy to GitHub Pages
 
 on:
-  # Dispara quando você der push na branch main
   push:
-    branches: ["main"]
-  # Permite disparar manualmente se precisar (botão no GitHub)
-  workflow_dispatch:
+    branches: [ "main" ]
 
-# Dá permissão para o robô do GitHub ler seu código e publicar no Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Garante que não tenha dois deploys rodando ao mesmo tempo
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
-  # TAREFA 1: Construir o site (Build)
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Baixar seu código
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Instalar o PNPM
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-
-      - name: Configurar o Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: 'pnpm'
-          # Avisa onde está o arquivo de trava para o cache funcionar
-          cache-dependency-path: frontend/pnpm-lock.yaml
+          node-version: 20
+          cache: 'npm'
 
-      - name: Instalar dependências do Frontend
-        # O comando entra na pasta 'frontend' antes de rodar
-        working-directory: ./frontend
-        run: pnpm install
+      - name: Install dependencies
+        run: npm install
 
-      - name: Criar o site estático (Build)
-        working-directory: ./frontend
-        run: pnpm run build
+      - name: Build
+        run: npm run build
 
-      # --- DIAGNÓSTICO E CORREÇÃO ---
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Verificar se index.html foi criado
-        run: |
-          if [ ! -f frontend/dist/index.html ]; then
-            echo "❌ ERRO CRÍTICO: O build terminou, mas o arquivo index.html NÃO ESTÁ na pasta frontend/dist."
-            echo "📂 Listando arquivos encontrados para debug:"
-            ls -R frontend
-            exit 1
-          else
-            echo "✅ SUCESSO: index.html encontrado e pronto para envio!"
-          fi
-
-      - name: Criar arquivo .nojekyll
-        run: touch frontend/dist/.nojekyll
-
-      # --- FIM DO DIAGNÓSTICO ---
-
-      - name: Preparar arquivos para envio
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # O build do Vue/Vite gera a pasta 'dist' dentro de 'frontend'
-          path: ./frontend/dist
+          path: './dist' # Aqui é onde o Vue coloca o site pronto!
 
-  # TAREFA 2: Publicar (Deploy)
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Publicar no GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
