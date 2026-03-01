@@ -44,34 +44,38 @@ const voltarInicio = () => router.push('/')
   align-items: center; 
   min-height: 80vh; 
   padding: 2rem;
+  background: var(--bg);
+  color: var(--text);
 }
 .feedback-card { 
   max-width: 500px; 
   text-align: center; 
   padding: 3rem 2rem;
-  background: white;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 .icon-wrapper { font-size: 4rem; margin-bottom: 1.5rem; }
-.description { color: #666; line-height: 1.6; margin-bottom: 2rem; }
+.description { opacity: 0.8; line-height: 1.6; margin-bottom: 2rem; }
 .order-info { 
-  background: #f8f9fa; 
+  background: rgba(0,0,0,0.05); 
   padding: 1rem; 
   border-radius: 12px; 
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
+  border: 1px solid var(--card-border);
 }
 .info-box { 
-  border-left: 4px solid var(--primary, #3b82f6); 
-  background: #eff6ff; 
+  border-left: 4px solid var(--primary); 
+  background: rgba(249, 115, 22, 0.05); 
   padding: 1rem; 
   margin-bottom: 2rem;
   font-size: 0.85rem;
   text-align: left;
 }
 .btn-action { 
-  background: var(--primary, #3b82f6); 
+  background: var(--primary); 
   color: white; 
   border: none; 
   padding: 1rem 2rem; 

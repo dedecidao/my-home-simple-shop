@@ -24,10 +24,11 @@ const confirmarPresente = () => {
 }
 
 // Lógica do Modal de Boas Vindas
-const showWelcomeModal = ref(true)
+const showWelcomeModal = ref(false)
 const greeting = ref('')
 
 onMounted(() => {
+  // Configura a saudação baseada na hora
   const hour = new Date().getHours()
   if (hour >= 5 && hour < 12) {
     greeting.value = 'Bom dia'
@@ -36,10 +37,17 @@ onMounted(() => {
   } else {
     greeting.value = 'Boa noite'
   }
+
+  // Verifica se o modal já foi fechado nesta sessão
+  const checkModalFechado = sessionStorage.getItem('welcomeModalClosed')
+  if (!checkModalFechado) {
+    showWelcomeModal.value = true
+  }
 })
 
 const closeWelcomeModal = () => {
   showWelcomeModal.value = false
+  sessionStorage.setItem('welcomeModalClosed', 'true')
 }
 </script>
 
@@ -68,7 +76,7 @@ const closeWelcomeModal = () => {
 
     <div class="container">
       <header class="hero">
-        <h1>Chá de casa nova</h1>
+        <h1>Chá </h1>
         <p>Presentes para novos começos e momentos especiais.
           Com carinho André e Camilly.
         </p>
@@ -81,7 +89,7 @@ const closeWelcomeModal = () => {
              <img :src="product.image" :alt="product.name" loading="lazy" />
           </div>
           <div class="card-content">
-            <h3>{{ product.name }}</h3>
+            <h2>{{ product.name }}</h2>
             <p>{{ product.description }}</p>
             <div class="card-footer">
               <span class="price">R$ {{ product.price.toFixed(2).replace('.', ',') }}</span>
@@ -137,7 +145,12 @@ const closeWelcomeModal = () => {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.card:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
 }
 
 .card-image-wrapper {
@@ -160,6 +173,12 @@ const closeWelcomeModal = () => {
   flex-direction: column;
   flex: 1; /* Ocupa altura restante para alinhar botões */
   gap: 0.5rem;
+}
+
+.card-content h2 {
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
 }
 
 .card-footer {

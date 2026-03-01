@@ -23,13 +23,16 @@ const form = ref({
   presenca: '' // Campo obrigatório de presença
 })
 const isLoading = ref(false)
+const errorMessage = ref('')
 
 // --- 5. AÇÕES ---
 const voltar = () => router.push('/')
 
 const finalizarCompra = async () => {
-  if (!form.value.name || !form.value.email) {
-    alert("Preencha nome e e-mail.");
+  errorMessage.value = '';
+
+  if (!form.value.name || !form.value.email || !form.value.presenca) {
+    errorMessage.value = "Por favor, preencha todos os campos obrigatórios (*).";
     return;
   }
 
@@ -67,7 +70,7 @@ const finalizarCompra = async () => {
     }
   } catch (error) {
     console.error("Erro:", error);
-    alert("Erro ao abrir pagamento.");
+    errorMessage.value = "Erro ao processar o pagamento. Tente novamente mais tarde.";
   } finally {
     isLoading.value = false;
   }
@@ -78,7 +81,7 @@ const finalizarCompra = async () => {
   <main>
 
     <div class="container checkout-page">
-      <button @click="voltar" class="btn-back">← Voltar para a loja</button>
+      <button @click="voltar" class="btn-back">← Voltar</button>
 
       <div v-if="product" class="checkout-grid">
         
@@ -124,6 +127,12 @@ const finalizarCompra = async () => {
                   <span>Não poderei comparecer presencialmente</span>
                 </label>
               </div>
+
+              <transition name="fade">
+                <div v-if="errorMessage" class="error-message">
+                  {{ errorMessage }}
+                </div>
+              </transition>
 
               <button type="submit" class="btn-action full-width" :disabled="isLoading">
                 {{ isLoading ? 'Preparando Pagamento...' : 'Ir para Pagamento 🚀' }}
@@ -192,6 +201,20 @@ input[type="text"], input[type="email"] { width: 100%; background: rgba(0,0,0,0.
 }
 .btn-action { background: var(--primary); color: white; border: none; padding: 1rem; border-radius: 20px; font-weight: 600; cursor: pointer; width: 100%; }
 .btn-back { background: none; border: none; color: var(--primary); cursor: pointer; margin-bottom: 1rem; }
+
+.error-message {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 
 @media (max-width: 768px) { .checkout-grid { grid-template-columns: 1fr; } }
 </style>
