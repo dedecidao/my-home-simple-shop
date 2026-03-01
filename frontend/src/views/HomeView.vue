@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -8,10 +8,8 @@ const router = useRouter()
 import { products } from '@/data/products.js'
 
 const selectedProduct = ref(null)
-const isLightTheme = ref(false)
 
 const presentear = (product) => selectedProduct.value = product
-const toggleTheme = () => isLightTheme.value = !isLightTheme.value
 
 const confirmarPresente = () => {
   if (selectedProduct.value) {
@@ -24,17 +22,49 @@ const confirmarPresente = () => {
 
   }
 }
+
+// Lógica do Modal de Boas Vindas
+const showWelcomeModal = ref(true)
+const greeting = ref('')
+
+onMounted(() => {
+  const hour = new Date().getHours()
+  if (hour >= 5 && hour < 12) {
+    greeting.value = 'Bom dia'
+  } else if (hour >= 12 && hour < 18) {
+    greeting.value = 'Boa tarde'
+  } else {
+    greeting.value = 'Boa noite'
+  }
+})
+
+const closeWelcomeModal = () => {
+  showWelcomeModal.value = false
+}
 </script>
 
 
 
 <template>
-  <main :class="['app-wrapper', isLightTheme ? 'light' : 'dark']">
-
-    <!-- Botão de Tema -->
-    <button class="theme-btn" @click="toggleTheme" :title="isLightTheme ? 'Ir para modo escuro' : 'Ir para modo claro'">
-       {{ isLightTheme ? '🌙' : '☀️' }}
-    </button>
+  <main>
+    <!-- Welcome Modal -->
+    <transition name="modal-fade">
+      <div v-if="showWelcomeModal" class="modal-overlay">
+        <div class="modal-content">
+          <h2>{{ greeting }}!</h2>
+          <p>
+            Ficamos muito felizes em ter você aqui! Eu e a Camilly estamos preparando cada detalhe do nosso <b>novo lar</b> com muito carinho.
+          </p>
+          <p>
+            Gostaríamos de informar que todos os presentes listados neste site são <b>fictícios</b>. Decidimos por este modelo para que o valor arrecadado seja <b>destinado à compra do nosso enxoval físico</b>, garantindo que tudo combine com as <b>cores e o estilo</b> que planejamos para a nossa casa.
+          </p>
+          <p>
+            Esperamos que entendam e, desde já, <b>agradecemos imenso pelo apoio</b> e por fazerem parte da nossa história!
+          </p>
+          <button class="btn-action btn-ok" @click="closeWelcomeModal">OK</button>
+        </div>
+      </div>
+    </transition>
 
     <div class="container">
       <header class="hero">
@@ -148,16 +178,6 @@ const confirmarPresente = () => {
 
 
 
-.theme-btn {
-  position: absolute;
-  top: 1rem; right: 1rem;
-  background: transparent;
-  border: 1px solid var(--card-border);
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  border-radius: 50%;
-  cursor: pointer;
-}
 
 /* --- BARRA DE SELEÇÃO FIXA --- */
 .selection-bar {
@@ -186,4 +206,74 @@ const confirmarPresente = () => {
 /* Animação de entrada da barra */
 .slide-up-enter-active, .slide-up-leave-active { transition: all 0.3s ease; }
 .slide-up-enter-from, .slide-up-leave-to { transform: translate(-50%, 100px); opacity: 0; }
+
+/* --- MODAL DE BOAS-VINDAS --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 1.5rem;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.modal-content h2 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.modal-content p {
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+.btn-ok {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 30px;
+}
+
+/* Animação do Modal */
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+.modal-fade-enter-active .modal-content {
+  animation: modalPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPopIn {
+  from {
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    transform: scale(1) translateY(0);
+  }
+}
 </style>

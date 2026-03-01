@@ -36,10 +36,10 @@ const fecharJanela = () => {
 <style scoped>
 .success-page {
   display: flex; align-items: center; justify-content: center;
-  min-height: 100vh; background: #171320; color: white; padding: 20px;
+  min-height: 100vh; background: var(--bg); color: var(--text); padding: 20px;
 }
 .card {
-  background: #241729; border: 1px solid rgba(244, 114, 182, 0.3);
+  background: var(--card-bg); border: 1px solid var(--card-border);
   padding: 2.5rem; border-radius: 20px; text-align: center; max-width: 400px;
 }
 .icon-check { font-size: 5rem; margin-bottom: 1rem; }
