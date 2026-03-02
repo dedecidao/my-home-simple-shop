@@ -26,7 +26,7 @@ export const products = [
   {
     id: 19,
     name: 'Mop de Limpeza com Balde',
-    description: 'Praticidade total para manter o chão sempre limpo.',
+    description: 'Para limpar a sujeira que as patas de toddy de Luna deixa pelo chão.',
     price: 69.90,
     image: import.meta.env.BASE_URL + 'img/mop.png'
   },
@@ -41,14 +41,14 @@ export const products = [
   },
   {
     id: 44,
-    name: 'Aparelho de Jantar Completo (20 peças)',
+    name: 'Aparelho de Jantar Completo',
     description: 'Design moderno para compor a mesa da casa nova.',
     price: 259.90,
     image: import.meta.env.BASE_URL + 'img/aparelho_jantar_comp.png'
   },
   {
     id: 48, // NOVO ITEM ESTRATÉGICO ACIMA DE 300
-    name: 'Fritadeira Air Fryer Inox 4L',
+    name: 'Fritadeira Air Fryer Inox',
     description: 'O eletro essencial para uma rotina saudável e prática.',
     price: 389.90,
     image: import.meta.env.BASE_URL + 'img/airfryer.png'
@@ -64,7 +64,7 @@ export const products = [
   },
   {
     id: 46,
-    name: 'Tanquinho de Lavar Roupas 12kg',
+    name: 'Tanquinho de Lavar Roupas',
     description: 'Eficiência e economia para lavar roupas pesadas e tapetes.',
     price: 589.90,
     image: import.meta.env.BASE_URL + 'img/lavadora.png'
@@ -101,8 +101,8 @@ export const products = [
   },
   {
     id: 39,
-    name: 'Cota: Smart TV 55" 4K HDR',
-    description: 'Tecnologia de ponta para transformar a sala num cinema.',
+    name: 'Cota: Smart TV',
+    description: 'Maratonar um anime, jogar e fingir que vamos dormir cedo.',
     price: 2699.90,
     image: import.meta.env.BASE_URL + 'img/tv.png'
   },
