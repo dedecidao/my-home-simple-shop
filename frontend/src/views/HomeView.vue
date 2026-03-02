@@ -104,7 +104,10 @@ const closeWelcomeModal = () => {
             <h2>{{ product.name }}</h2>
             <p>{{ product.description }}</p>
             <div class="card-footer">
-              <span class="price">R$ {{ product.price.toFixed(2).replace('.', ',') }}</span>
+              <div class="price-container">
+                <span class="price">R$ {{ product.price.toFixed(2).replace('.', ',') }}</span>
+                <span class="installment-info">💳 Opção de parcelamento</span>
+              </div>
               <button class="btn-action" @click="presentear(product)">Presentear</button>
             </div>
           </div>
@@ -256,6 +259,20 @@ const closeWelcomeModal = () => {
   background: rgba(236, 72, 153, 0.1);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
+}
+
+.installment-info {
+  font-size: 0.8rem;
+  color: var(--text);
+  opacity: 0.75;
+  font-weight: 500;
 }
 
 /* --- BARRA DE SELEÇÃO FIXA --- */

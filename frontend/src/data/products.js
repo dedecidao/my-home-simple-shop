@@ -1,212 +1,137 @@
 export const products = [
-  // --- ITENS ORIGINAIS (Ajustados para preço funcional) ---
+  // --- TESTES ---
   {
     id: 1,
-    name: 'Cesta Chá de Panela',
-    description: 'Itens básicos de cozinha com um toque carinhoso.',
+    name: 'Teste Pix',
+    description: 'Teste de funcionalidade.',
     price: 0.10,
     image: 'https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?auto=format&w=600&q=80'
   },
   {
     id: 2,
-    name: 'Kit Café na Cama',
-    description: 'Bandeja, canecas e café especial para nossos domingos.',
+    name: 'Teste Cred',
+    description: 'Teste de funcionalidade.',
     price: 1.00,
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&w=600&q=80'
   },
-  {
-    id: 3,
-    name: 'Jantar a Dois',
-    description: 'Conjunto de pratos, taças e velas para nossa primeira noite.',
-    price: 189.90,
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&w=600&q=80'
-  },
-  // --- GRANDES ELETROS (COTAS) ---
-  {
-    id: 5,
-    name: 'Cota da Geladeira Inverse',
-    description: 'Ajude a manter nossas cervejas e comidas sempre geladinhas.',
-    price: 500.00,
-    image: 'https://images.unsplash.com/photo-1571175432230-01c288a6650a?auto=format&w=600&q=80'
-  },
-  {
-    id: 6,
-    name: 'Cota da Smart TV 55"',
-    description: 'Para nossas maratonas de séries e filmes no sofá.',
-    price: 350.00,
-    image: 'https://images.unsplash.com/photo-1593359674241-55cd0ed7370a?auto=format&w=600&q=80'
-  },
-  {
-    id: 7,
-    name: 'Cota da Cama King Size',
-    description: 'Contribua para o nosso descanso merecido após a reforma.',
-    price: 450.00,
-    image: 'https://images.unsplash.com/photo-1505693419148-403bb09938a1?auto=format&w=600&q=80'
-  },
-  // --- COZINHA E UTILIDADES ---
-  {
-    id: 8,
-    name: 'Air Fryer Digital',
-    description: 'Para a gente comer batata frita sem culpa (e sem sujeira).',
-    price: 380.00,
-    image: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&w=600&q=80'
-  },
-  {
-    id: 9,
-    name: 'Jogo de Panelas Antiaderente',
-    description: 'O conjunto perfeito para o André mostrar seus dotes culinários.',
-    price: 290.00,
-    image: 'https://images.unsplash.com/photo-1584990344321-27662dd7ff1b?auto=format&w=600&q=80'
-  },
-  {
-    id: 10,
-    name: 'Micro-ondas Espelhado',
-    description: 'Praticidade para os dias de correria no novo lar.',
-    price: 420.00,
-    image: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&w=600&q=80'
-  },
-  {
-    id: 11,
-    name: 'Máquina de Café Espresso',
-    description: 'Para despertar com energia todos os dias.',
-    price: 320.00,
-    image: 'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&w=600&q=80'
-  },
-  {
-    id: 12,
-    name: 'Faqueiro Inox 42 peças',
-    description: 'Um jogo completo para receber a família e os amigos.',
-    price: 145.00,
-    image: 'https://images.unsplash.com/photo-1591197172021-c1538abcad2b?auto=format&w=600&q=80'
-  },
-  {
-    id: 13,
-    name: 'Liquidificador Turbo',
-    description: 'Essencial para os nossos sucos e vitaminas.',
-    price: 115.00,
-    image: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&w=600&q=80'
-  },
-  {
-    id: 14,
-    name: 'Batedeira Planetária',
-    description: 'Para a Camilly fazer aqueles bolos maravilhosos.',
-    price: 275.00,
-    image: 'https://images.unsplash.com/photo-1594385208974-2e75f9d8ad48?auto=format&w=600&q=80'
-  },
-  // --- CHURRASCO E LAZER ---
-  {
-    id: 15,
-    name: 'Kit Mestre Churrasqueiro',
-    description: 'Tábuas, facas afiadas e tudo para o domingo perfeito.',
-    price: 120.00,
-    image: 'https://images.unsplash.com/photo-1594041419135-4f6bd0ee3c92?auto=format&w=600&q=80'
-  },
-  {
-    id: 16,
-    name: 'Churrasqueira Portátil',
-    description: 'Para o nosso cantinho do churrasco na casa nova.',
-    price: 195.00,
-    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&w=600&q=80'
-  },
+
+  // --- ITENS DE ENTRADA (ESTRATÉGIA 69,90) ---
   {
     id: 17,
-    name: 'Conjunto de Copos de Cerveja',
-    description: 'Taças e copos para brindar com os convidados.',
-    price: 85.00,
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&w=600&q=80'
-  },
-  // --- LIMPEZA E ORGANIZAÇÃO ---
-  {
-    id: 18,
-    name: 'Robô Aspirador',
-    description: 'Para manter a casa limpa enquanto a gente descansa.',
-    price: 490.00,
-    image: 'https://images.unsplash.com/photo-1518349619113-03114f06ac3a?auto=format&w=600&q=80'
+    name: 'Conjunto de Copos de Cristal',
+    description: 'Elegância para servir bebidas e receber visitas.',
+    price: 69.90,
+    image: import.meta.env.BASE_URL + 'img/copocristal.png'
   },
   {
     id: 19,
-    name: 'Mop de Limpeza Prática',
-    description: 'Adeus balde e pano de chão encardido.',
-    price: 65.00,
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&w=600&q=80'
+    name: 'Mop de Limpeza com Balde',
+    description: 'Praticidade total para manter o chão sempre limpo.',
+    price: 69.90,
+    image: import.meta.env.BASE_URL + 'img/mop.png'
+  },
+
+  // --- ITENS ESTRATÉGICOS (CONVERTER TICKET MÉDIO) ---
+  {
+    id: 4,
+    name: 'Kit de Travessas Gourmet',
+    description: 'Peças em porcelana ideais para servir jantares especiais.',
+    price: 159.90,
+    image: import.meta.env.BASE_URL + 'img/kit_travessas.png'
   },
   {
-    id: 20,
-    name: 'Ferro de Passar a Vapor',
-    description: 'Para deixar nossas roupas impecáveis.',
-    price: 135.00,
-    image: 'https://images.unsplash.com/photo-1495556650867-99590cea3657?auto=format&w=600&q=80'
-  },
-  // --- DECORAÇÃO E CONFORTO ---
-  {
-    id: 21,
-    name: 'Alexa Echo Dot',
-    description: 'Para controlar nossa casa inteligente por voz.',
-    price: 345.00,
-    image: 'https://images.unsplash.com/photo-1589492477829-5e65395b66cc?auto=format&w=600&q=80'
+    id: 44,
+    name: 'Aparelho de Jantar Completo (20 peças)',
+    description: 'Design moderno para compor a mesa da casa nova.',
+    price: 259.90,
+    image: import.meta.env.BASE_URL + 'img/aparelho_jantar_comp.png'
   },
   {
-    id: 22,
-    name: 'Jogo de Lençol 400 Fios',
-    description: 'Conforto de hotel na nossa cama nova.',
-    price: 210.00,
-    image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&w=600&q=80'
+    id: 48, // NOVO ITEM ESTRATÉGICO ACIMA DE 300
+    name: 'Fritadeira Air Fryer Inox 4L',
+    description: 'O eletro essencial para uma rotina saudável e prática.',
+    price: 389.90,
+    image: import.meta.env.BASE_URL + 'img/airfryer.png'
+  },
+
+  // --- UTILIDADES E ELETROS (FAIXA R$ 500 - R$ 1.500) ---
+  {
+    id: 45,
+    name: 'Lavadora de Alta Pressão Profissional',
+    description: 'Potência para lavar o carro e manter as áreas externas impecáveis.',
+    price: 649.90,
+    image: import.meta.env.BASE_URL + 'img/lava_auto_pressao.png'
   },
   {
-    id: 23,
-    name: 'Kit de Toalhas Gigantes',
-    description: 'Aquele abraço macio depois do banho.',
-    price: 155.00,
-    image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&w=600&q=80'
+    id: 46,
+    name: 'Tanquinho de Lavar Roupas 12kg',
+    description: 'Eficiência e economia para lavar roupas pesadas e tapetes.',
+    price: 589.90,
+    image: import.meta.env.BASE_URL + 'img/lavadora.png'
   },
   {
-    id: 24,
-    name: 'Quadro Decorativo para Sala',
-    description: 'Para dar personalidade às paredes da nossa casa.',
-    price: 95.00,
-    image: 'https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&w=600&q=80'
+    id: 49,
+    name: 'Micro-ondas Inox com Grill',
+    description: 'Alta potência e acabamento espelhado para a cozinha.',
+    price: 849.90,
+    image: import.meta.env.BASE_URL + 'img/microondas.png'
   },
   {
-    id: 25,
-    name: 'Difusor de Aromas Elétrico',
-    description: 'Para nossa casa estar sempre cheirosinha.',
-    price: 75.00,
-    image: 'https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&w=600&q=80'
-  },
-  // --- MIMOS E DIVERSOS ---
-  {
-    id: 26,
-    name: 'Adega de Vinhos (Cota)',
-    description: 'Contribuição para o nosso futuro cantinho do vinho.',
-    price: 200.00,
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&w=600&q=80'
+    id: 50,
+    name: 'Aspirador de Pó Robô Inteligente',
+    description: 'Limpeza automática para você aproveitar o tempo livre.',
+    price: 1199.90,
+    image: import.meta.env.BASE_URL + 'img/robo.png'
   },
   {
-    id: 27,
-    name: 'Torradeira Inox Retro',
-    description: 'Pão quentinho e crocante todas as manhãs.',
-    price: 155.00,
-    image: 'https://images.unsplash.com/photo-1584263347416-85a18a452999?auto=format&w=600&q=80'
+    id: 51,
+    name: 'Churrasqueira Gourmet de Embutir',
+    description: 'O item que faltava para os momentos de lazer em família.',
+    price: 1399.90,
+    image: import.meta.env.BASE_URL + 'img/churras.png'
+  },
+
+  // --- COTAS MASTER (GRANDES MÓVEIS E ELETROS ATÉ R$ 5.000) ---
+  {
+    id: 42,
+    name: 'Cota: Fogão de Embutir 5 Bocas Inox',
+    description: 'Design moderno com acendimento automático e forno potente.',
+    price: 1899.90,
+    image: import.meta.env.BASE_URL + 'img/fogao.png'
   },
   {
-    id: 28,
-    name: 'Sanduicheira e Grill',
-    description: 'Para aquele lanche rápido e gostoso.',
-    price: 98.00,
-    image: 'https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?auto=format&w=600&q=80'
+    id: 39,
+    name: 'Cota: Smart TV 55" 4K HDR',
+    description: 'Tecnologia de ponta para transformar a sala num cinema.',
+    price: 2699.90,
+    image: import.meta.env.BASE_URL + 'img/tv.png'
   },
   {
-    id: 29,
-    name: 'Aparelho de Fondue',
-    description: 'Para as noites frias de inverno em Ceilândia.',
-    price: 130.00,
-    image: 'https://images.unsplash.com/photo-1551446339-1e5c6f164ec2?auto=format&w=600&q=80'
+    id: 36,
+    name: 'Cota: Sofá Retrátil e Reclinável Premium',
+    description: 'Conforto máximo com tecido de alta qualidade e design ergonómico.',
+    price: 3299.90,
+    image: import.meta.env.BASE_URL + 'img/sofa.png'
   },
   {
-    id: 30,
-    name: 'Escorredor de Pratos Black',
-    description: 'Design moderno para a nossa pia nova.',
-    price: 78.00,
-    image: 'https://images.unsplash.com/photo-1590113348870-10137467262b?auto=format&w=600&q=80'
+    id: 47,
+    name: 'Cota: Conjunto de Armários Modulados',
+    description: 'Organização e estilo para a cozinha com acabamento premium.',
+    price: 3899.90,
+    image: import.meta.env.BASE_URL + 'img/armario.png'
+  },
+  {
+    id: 32,
+    name: 'Cota: Máquina Lava e Seca Frontal Inox',
+    description: 'Praticidade absoluta: roupas limpas e secas num único ciclo.',
+    price: 4399.90,
+    image: import.meta.env.BASE_URL + 'img/lavaseca.png'
+  },
+  {
+    id: 41,
+    name: 'Cota: Geladeira Inverse Frost Free',
+    description: 'Capacidade total e economia de energia para a nova rotina.',
+    price: 4899.90,
+    image: import.meta.env.BASE_URL + 'img/geladeira.png'
   }
 ];
