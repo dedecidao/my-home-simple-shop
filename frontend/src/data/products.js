@@ -36,21 +36,21 @@ export const products = [
     id: 4,
     name: 'Kit de Travessas Gourmet',
     description: 'Peças em porcelana ideais para servir jantares especiais.',
-    price: 139.90,
+    price: 99.90,
     image: import.meta.env.BASE_URL + 'img/kit_travessas.png'
   },
   {
     id: 44,
     name: 'Aparelho de Jantar Completo',
     description: 'Design moderno para compor a mesa da casa nova.',
-    price: 159.90,
+    price: 139.90,
     image: import.meta.env.BASE_URL + 'img/aparelho_jantar_comp.png'
   },
   {
     id: 48, // NOVO ITEM ESTRATÉGICO ACIMA DE 300
     name: 'Fritadeira Air Fryer Inox',
     description: 'O eletro essencial para uma rotina saudável e prática.',
-    price: 199.90,
+    price: 159.90,
     image: import.meta.env.BASE_URL + 'img/airfryer.png'
   },
 
@@ -59,28 +59,28 @@ export const products = [
     id: 45,
     name: 'Lavadora de Alta Pressão Profissional',
     description: 'Potência para lavar o carro e manter as áreas externas impecáveis.',
-    price: 249.90,
+    price: 199.90,
     image: import.meta.env.BASE_URL + 'img/lava_auto_pressao.png'
   },
   {
     id: 46,
     name: 'Tanquinho de Lavar Roupas',
     description: 'Eficiência e economia para lavar roupas pesadas e tapetes.',
-    price: 299.90,
+    price: 249.90,
     image: import.meta.env.BASE_URL + 'img/lavadora.png'
   },
   {
     id: 49,
     name: 'Micro-ondas Inox com Grill',
     description: 'Alta potência e acabamento espelhado para a cozinha.',
-    price: 349.90,
+    price: 299.90,
     image: import.meta.env.BASE_URL + 'img/microondas.png'
   },
   {
     id: 50,
     name: 'Aspirador de Pó Robô Inteligente',
     description: 'Limpeza automática para você aproveitar o tempo livre.',
-    price: 399.90,
+    price: 349.90,
     image: import.meta.env.BASE_URL + 'img/robo.png'
   },
   {
