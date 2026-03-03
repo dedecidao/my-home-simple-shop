@@ -20,7 +20,7 @@ export const products = [
     id: 17,
     name: 'Conjunto de Copos de Cristal',
     description: 'Elegância para servir bebidas e receber visitas.',
-    price: 59.90,
+    price: 54.90,
     image: import.meta.env.BASE_URL + 'img/copocristal.png'
   },
   {
