@@ -20,7 +20,7 @@ export const products = [
     id: 17,
     name: 'Conjunto de Copos de Cristal',
     description: 'Elegância para servir bebidas e receber visitas.',
-    price: 69.90,
+    price: 59.90,
     image: import.meta.env.BASE_URL + 'img/copocristal.png'
   },
   {
@@ -59,35 +59,35 @@ export const products = [
     id: 45,
     name: 'Lavadora de Alta Pressão Profissional',
     description: 'Potência para lavar o carro e manter as áreas externas impecáveis.',
-    price: 499.90,
+    price: 249.90,
     image: import.meta.env.BASE_URL + 'img/lava_auto_pressao.png'
   },
   {
     id: 46,
     name: 'Tanquinho de Lavar Roupas',
     description: 'Eficiência e economia para lavar roupas pesadas e tapetes.',
-    price: 589.90,
+    price: 299.90,
     image: import.meta.env.BASE_URL + 'img/lavadora.png'
   },
   {
     id: 49,
     name: 'Micro-ondas Inox com Grill',
     description: 'Alta potência e acabamento espelhado para a cozinha.',
-    price: 849.90,
+    price: 349.90,
     image: import.meta.env.BASE_URL + 'img/microondas.png'
   },
   {
     id: 50,
     name: 'Aspirador de Pó Robô Inteligente',
     description: 'Limpeza automática para você aproveitar o tempo livre.',
-    price: 999.90,
+    price: 399.90,
     image: import.meta.env.BASE_URL + 'img/robo.png'
   },
   {
     id: 51,
     name: 'Churrasqueira Gourmet de Embutir',
     description: 'O item que faltava para os momentos de lazer em família.',
-    price: 1199.90,
+    price: 499.90,
     image: import.meta.env.BASE_URL + 'img/churras.png'
   },
 
@@ -96,35 +96,35 @@ export const products = [
     id: 42,
     name: 'Cota: Fogão de Embutir 5 Bocas Inox',
     description: 'Design moderno com acendimento automático e forno potente.',
-    price: 1399.90,
+    price: 699.90,
     image: import.meta.env.BASE_URL + 'img/fogao.png'
   },
   {
     id: 39,
     name: 'Cota: Smart TV',
     description: 'Maratonar um anime, jogar e fingir que vamos dormir cedo.',
-    price: 1990.90,
+    price: 699.90,
     image: import.meta.env.BASE_URL + 'img/tv.png'
   },
   {
     id: 36,
     name: 'Cota: Sofá Retrátil e Reclinável Premium',
     description: 'Conforto máximo com tecido de alta qualidade e design ergonómico.',
-    price: 1990.90,
+    price: 799.90,
     image: import.meta.env.BASE_URL + 'img/sofa.png'
   },
   {
     id: 47,
     name: 'Cota: Conjunto de Armários Modulados',
     description: 'Organização e estilo para a cozinha com acabamento premium.',
-    price: 1990.90,
+    price: 849.90,
     image: import.meta.env.BASE_URL + 'img/armario.png'
   },
   {
     id: 32,
     name: 'Cota: Máquina Lava e Seca Frontal Inox',
     description: 'Praticidade absoluta: roupas limpas e secas num único ciclo.',
-    price: 1990.90,
+    price: 999.90,
     image: import.meta.env.BASE_URL + 'img/lavaseca.png'
   },
   {
