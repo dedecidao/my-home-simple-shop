@@ -110,28 +110,28 @@ export const products = [
     id: 36,
     name: 'Cota: Sofá Retrátil e Reclinável Premium',
     description: 'Conforto máximo com tecido de alta qualidade e design ergonómico.',
-    price: 2499.90,
+    price: 1999.90,
     image: import.meta.env.BASE_URL + 'img/sofa.png'
   },
   {
     id: 47,
     name: 'Cota: Conjunto de Armários Modulados',
     description: 'Organização e estilo para a cozinha com acabamento premium.',
-    price: 2999.90,
+    price: 1999.90,
     image: import.meta.env.BASE_URL + 'img/armario.png'
   },
   {
     id: 32,
     name: 'Cota: Máquina Lava e Seca Frontal Inox',
     description: 'Praticidade absoluta: roupas limpas e secas num único ciclo.',
-    price: 3499.90,
+    price: 1999.90,
     image: import.meta.env.BASE_URL + 'img/lavaseca.png'
   },
   {
     id: 41,
     name: 'Cota: Geladeira Inverse Frost Free',
     description: 'Capacidade total e economia de energia para a nova rotina.',
-    price: 4499.90,
+    price: 1999.90,
     image: import.meta.env.BASE_URL + 'img/geladeira.png'
   }
 ];
