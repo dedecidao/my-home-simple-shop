@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const baseUrl = import.meta.env.BASE_URL
 
 // O @ geralmente é um atalho para a pasta 'src' configurado no Vite
 import { products } from '@/data/products.js'
@@ -67,14 +68,14 @@ const closeWelcomeModal = () => {
             Cada detalhe do nosso novo lar está sendo preparado com muito carinho!! 
           </p>
           <p>
-            Gostaríamos de informar que todos os presentes listados neste site são fictícios. Decidimos por este modelo para que o valor arrecadado seja destinado à compra do nosso enxoval físico, garantindo que tudo combine com as cores e o estilo que planejamos para a nossa casa.
+            Gostaríamos de informar que todos os presentes listados neste site são <span class="highlight-text">Fictícios</span>. Decidimos por este modelo para que o valor arrecadado seja destinado à compra do nosso enxoval físico, garantindo que tudo combine com as cores e o estilo que planejamos para a nossa casa.
           </p>
           <p>
             Esperamos que entendam e, desde já, agradecemos imensamente pelo apoio e por fazerem parte da nossa história!
           </p>
           
           <div class="modal-image-wrapper">
-            <img src="/imagem.jpg" alt="Foto do Casal" class="modal-image" />
+            <img src="/nossaFoto.jpg" alt="Foto do Casal" class="modal-image" />
           </div>
 
           <button class="btn-action btn-ok" @click="closeWelcomeModal">OK</button>
@@ -84,14 +85,16 @@ const closeWelcomeModal = () => {
 
     <div class="container">
       <header class="hero">
-        <h1>Chá 🏠 </h1>
+        <div class="hero-logo-container">
+          <img :src="baseUrl + 'logo.png'" alt="Logo" class="hero-logo" />
+        </div>
         <p class="hero-subtitle">
           Presentes para novos começos e momentos especiais.
         </p>
-        <div class="hero-signature">
+        <!-- <div class="hero-signature">
           Com carinho, <br />
           <strong>Camilly e André</strong>
-        </div>
+        </div> -->
       </header>
 
       <!-- Grid Responsivo -->
@@ -143,6 +146,27 @@ const closeWelcomeModal = () => {
   box-shadow: var(--hero-shadow);
   backdrop-filter: blur(10px);
   border: 1px solid var(--hero-border);
+}
+
+.hero-logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.hero-logo {
+  width: 90%; /* Ocupará uma boa parte da tela em celulares pequenos */
+  max-width: 320px; /* Mas não passará de 320px em telas maiores */
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(112, 81, 81, 0.1));
+  animation: floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
 }
 .hero h1 { 
   font-size: 3rem; 
@@ -354,6 +378,17 @@ const closeWelcomeModal = () => {
   font-size: 1.05rem;
   color: var(--text);
   opacity: 0.9;
+}
+
+.highlight-text {
+  font-size: 1.1em;
+  font-weight: 900;
+  color: var(--primary);
+
+  background: rgba(236, 72, 153, 0.15);
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  display: inline-block;
 }
 
 .modal-image-wrapper {
