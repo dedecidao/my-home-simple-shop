@@ -103,35 +103,35 @@ export const products = [
     id: 39,
     name: 'Cota: Smart TV',
     description: 'Maratonar um anime, jogar e fingir que vamos dormir cedo.',
-    price: 1999.90,
+    price: 1990.90,
     image: import.meta.env.BASE_URL + 'img/tv.png'
   },
   {
     id: 36,
     name: 'Cota: Sofá Retrátil e Reclinável Premium',
     description: 'Conforto máximo com tecido de alta qualidade e design ergonómico.',
-    price: 1999.90,
+    price: 1990.90,
     image: import.meta.env.BASE_URL + 'img/sofa.png'
   },
   {
     id: 47,
     name: 'Cota: Conjunto de Armários Modulados',
     description: 'Organização e estilo para a cozinha com acabamento premium.',
-    price: 1999.90,
+    price: 1990.90,
     image: import.meta.env.BASE_URL + 'img/armario.png'
   },
   {
     id: 32,
     name: 'Cota: Máquina Lava e Seca Frontal Inox',
     description: 'Praticidade absoluta: roupas limpas e secas num único ciclo.',
-    price: 1999.90,
+    price: 1990.90,
     image: import.meta.env.BASE_URL + 'img/lavaseca.png'
   },
   {
     id: 41,
     name: 'Cota: Geladeira Inverse Frost Free',
     description: 'Capacidade total e economia de energia para a nova rotina.',
-    price: 1999.90,
+    price: 1990.90,
     image: import.meta.env.BASE_URL + 'img/geladeira.png'
   }
 ];
